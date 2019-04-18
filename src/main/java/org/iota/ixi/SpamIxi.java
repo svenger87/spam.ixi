@@ -31,7 +31,7 @@ public class SpamIxi extends IxiModule {
 			
 			// Sleep for 10 seconds
 			try {
-				Thread.sleep(10000);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				LOGGER.error("SpamModule encountered an error.", e);
 			}
