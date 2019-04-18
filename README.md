@@ -8,6 +8,8 @@ This guide assumes you have an Ict up and running. Please find instructions on [
 1. Under the web gui of your Ict node, go to your "manage modules" tab
 2. Click "install third party module" button
 3. Type in `locknic/spam.ixi`
-4. To stop spamming, simply remove the module 
+4. Click install
+
+To stop spamming, simply remove the module 
 
 Note: You can also build this module yourself as with any other
