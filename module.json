@@ -1,0 +1,9 @@
+{
+  "version": "0.1",
+  "name": "Spam.ixi",
+  "main_class": "org.iota.ixi.SpamIxi",
+  "description": "This IXI module creates and broadcasts a random spam transaction every 10 seconds",
+  "repository": "iotaledger/ixi",
+  "gui_port": -1,
+  "supported_versions": ["0.6"]
+}
