@@ -1,8 +1,6 @@
 plugins {
     id 'java'
     id 'idea'
-	id 'com.jfrog.bintray' version '1.7.3'
-	id 'maven-publish'
 }
 
 group 'com.locknic'
@@ -11,16 +9,14 @@ version '0.1'
 sourceCompatibility = 1.7
 
 repositories {
-	mavenLocal()
     mavenCentral()
-	jcenter()
     maven { url "https://jitpack.io" }
 }
 
 dependencies {
     compile 'com.github.iotaledger:ict:872cee6fb910bac97239e3dd55b78a9e7d6cc5e1'
-	compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
-	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
 }
 
 task ixi(type: Jar) {
@@ -31,63 +27,3 @@ task ixi(type: Jar) {
     with jar
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-	classifier = 'sources'
-	from sourceSets.main.allSource
-}
-
-def pomConfig = {
-	licenses {
-		license {
-			name "The Apache Software License, Version 2.0"
-			url "http://www.apache.org/licenses/LICENSE-2.0.txt"
-			distribution "repo"
-		}
-	}
-	developers {
-		developer {
-			id "locknic"
-			name "Dominic Mortlock"
-			email "dom.mortlock@gmail.com"
-		}
-	}
-}
-
-publishing {
-	publications {
-		mavenPublication(MavenPublication) {
-			from components.java
-			artifact sourcesJar {
-				classifier "sources"
-			}
-			groupId 'com.locknic.spam.ixi'
-			artifactId 'spam.ixi'
-			version '0,1'
-			pom.withXml {
-				def root = asNode()
-				root.appendNode('name', 'spam.ixi')
-				root.appendNode('url', 'https://github.com/locknic/spam.ixi')
-				root.children().last() + pomConfig
-			}
-		}
-	}
-}
-
-bintray {
-	user = System.getProperty('bintray.user')
-	key = System.getProperty('bintray.key')
-	publications = ['mavenPublication']
-
-	pkg {
-		repo = 'spam.ixi'
-		name = 'spam.ixi'
-		userOrg = 'locknic'
-		licenses = ['Apache-2.0']
-		vcsUrl = 'https://github.com/locknic/spam.ixi.git'
-		version {
-			name = '0.1'
-			desc = '0.1'
-			released = new Date()
-		}
-	}
-}
